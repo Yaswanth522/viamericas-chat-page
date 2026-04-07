@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      color: #1a1a1a;
+      background: #e8eaef;
+      overflow-x: hidden;
+    }
+
+    .bg-shift {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(
+        125deg,
+        #dfe3ea 0%,
+        #e8ecf2 35%,
+        #d8dce5 70%,
+        #e4e7ee 100%
+      );
+      background-size: 300% 300%;
+      animation: gradient-move 18s ease infinite;
+    }
+
+    @keyframes gradient-move {
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(48px);
+      opacity: 0.45;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .orb-a {
+      width: min(42vw, 320px);
+      height: min(42vw, 320px);
+      background: #b8c4d4;
+      top: 10%;
+      left: -5%;
+      animation: float-a 14s ease-in-out infinite;
+    }
+
+    .orb-b {
+      width: min(38vw, 280px);
+      height: min(38vw, 280px);
+      background: #c5ccd8;
+      bottom: 15%;
+      right: -8%;
+      animation: float-b 16s ease-in-out infinite;
+    }
+
+    @keyframes float-a {
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+      50% {
+        transform: translate(24px, 32px) scale(1.06);
+      }
+    }
+
+    @keyframes float-b {
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+      50% {
+        transform: translate(-20px, -28px) scale(1.05);
+      }
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .panel {
+      max-width: 36rem;
+      padding: 2.25rem 2rem;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+      animation: panel-in 0.9s ease-out both;
+    }
+
+    @keyframes panel-in {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .panel h1 {
+      margin: 0 0 0.75rem;
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .panel p {
+      margin: 0;
+      line-height: 1.55;
+      color: #444;
+      font-size: 0.95rem;
+    }
+
+    .pulse-line {
+      margin-top: 1.25rem;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        #9aa8b8,
+        transparent
+      );
+      background-size: 200% 100%;
+      animation: shimmer 2.5s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 100% 0;
+      }
+      100% {
+        background-position: -100% 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-shift" aria-hidden="true"></div>
+  <div class="orb orb-a" aria-hidden="true"></div>
+  <div class="orb orb-b" aria-hidden="true"></div>
+
+  <main>
+    <div class="panel">
+      <h1>Welcome</h1>
+      <p>
+        This is a simple page with light motion in the background. Use the chat
+        control when it appears to get help.
+      </p>
+      <div class="pulse-line" aria-hidden="true"></div>
+    </div>
+  </main>
+
+  <script src="https://cdn.yellowmessenger.com/plugin/widget-v3/prod/dist/loader.umd.js"></script>
+  <script type="text/javascript">
+    ChatWidget.init({
+      yellowMessenger: {
+        botId: "x1775543313660",
+        host: "https://nexus.yellow.ai",
+      },
+    });
+  </script>
+</body>
+</html>
